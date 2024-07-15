@@ -7,7 +7,7 @@ const port = 3000;
 
 const apiRouter = require('./routes/api');
 const uiRouter = require('./routes/ui');
-
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
@@ -18,7 +18,7 @@ app.use('/api', apiRouter);
 app.use('/', uiRouter);
 
 app.use(express.json());
-app.use(methodOverride('_method'));
+
 
 
 
