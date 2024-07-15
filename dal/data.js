@@ -9,7 +9,6 @@ const pool = new Pool({
   port: 5432,
 });
 
-
 async function getAllMovies() {
   const results = await pool.query('SELECT * FROM movie');
   return results.rows;
@@ -22,12 +21,11 @@ async function getMovieById(id) {
 
 async function createMovie(title, genre, rating, director) {
   const results = await pool.query('INSERT INTO movie(title, genre, rating, director) VALUES($1, $2, $3, $4) RETURNING *', [title, genre, rating, director]);
-  return results.rows;
+  return results.rows[0];
 }
 
 async function deleteMovie(id) {
-  const results = await pool.query('DELETE FROM movie WHERE id = $1', [id]);
-  return results.rows;
+  await pool.query('DELETE FROM movie WHERE id = $1', [id]);
 }
 
 async function updateMovie(id, title, genre, rating, director) {
@@ -36,11 +34,10 @@ async function updateMovie(id, title, genre, rating, director) {
   return rows[0];
 }
 
-
 module.exports = {
   getAllMovies,
   createMovie,
   deleteMovie,
   getMovieById,
-  updateMovie
+  updateMovie,
 };

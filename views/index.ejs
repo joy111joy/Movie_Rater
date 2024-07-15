@@ -11,9 +11,8 @@
     <% movies.forEach(movie => { %>
       <li>
         <%= movie.title %> - <%= movie.genre %> - <%= movie.rating %> - <%= movie.director %>
-        <form action="/movies/<%= movie.id %>" method="POST" style="display: inline;">
+        <form action="/movies/<%= movie.id %>?_method=DELETE" method="POST" style="display: inline;">
           <button type="submit">Delete</button>
-          <input type="hidden" name="_method" value="DELETE">
         </form>
         <a href="/movies/<%= movie.id %>/edit">Edit</a>
       </li>
