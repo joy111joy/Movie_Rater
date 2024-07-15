@@ -11,17 +11,22 @@ const pool = new Pool({
 
 
 async function getAllMovies() {
-  const results = await pool.query('SELECT * FROM movies');
+  const results = await pool.query('SELECT * FROM movie');
   return results.rows;
 }
 
-async function createMovie(title, description, genre, rating) {
-  const results = await pool.query('INSERT INTO movies(title, description, genre, rating) VALUES($1, $2, $3, $4) RETURNING *', [title, description, genre, rating]);
+async function createMovie(title, genre, rating, director) {
+  const results = await pool.query('INSERT INTO movie(title, genre, rating, director) VALUES($1, $2, $3, $4) RETURNING *', [title, genre, rating, director]);
   return results.rows;
 }
 
 async function deleteMovie(id) {
-  const results = await pool.query('DELETE FROM movies WHERE id = $1', [id]);
+  const results = await pool.query('DELETE FROM movie WHERE id = $1', [id]);
   return results.rows;
 }
 
+module.exports = {
+  getAllMovies,
+  createMovie,
+  deleteMovie,
+};
