@@ -1,0 +1,15 @@
+# Test Cases for Customer Management System
+
+## UI Test Cases
+
+1. As a customer, I can see a web page listing all the customers from the database.
+2. As a staff member, I can see a web page that allows me to add a new customer to the database.
+3. As a staff member, I can see a web page that allows me to update an existing customer's information.
+4. As a staff member, I can see a web page that allows me to delete a customer from the database.
+
+## API Test Cases
+
+1. As a business partner, I can fetch all the customers from the database via a REST API, receiving JSON data.
+2. As a business partner, I can add a new customer to the database via a REST API.
+3. As a business partner, I can update an existing customer's information via a REST API.
+4. As a business partner, I can delete a customer from the database via a REST API.
