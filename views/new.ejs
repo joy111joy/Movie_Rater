@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add New Movie</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <h1>Add New Movie</h1>
@@ -27,12 +28,12 @@
     function validateRating() {
       var ratingInput = document.getElementById('rating');
       var rating = ratingInput.value;
-      
+
       if (rating < 1 || rating > 10) {
         alert('Rating must be between 1 and 10');
         return false;
       }
-      
+
       return true;
     }
   </script>

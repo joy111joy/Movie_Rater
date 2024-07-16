@@ -4,20 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Rater</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href='https://unpkg.com/css.gg@2.0.0/icons/css/push-chevron-right.css' rel='stylesheet'>
+  <style>
+    .rating-1-3 { background-color: red; }
+    .rating-4-6 { background-color: yellow; }
+    .rating-7-10 { background-color: green; }
+  </style>
 </head>
 <body>
-  <h1>Movie List</h1>
+  <h1>Movie <span id="Yellow">Rater</span></h1>
   <ul>
-    <% movies.forEach(movie => { %>
-      <li>
-        <%= movie.title %> - <%= movie.genre %> - <%= movie.rating %> - <%= movie.director %>
-        <form action="/movies/<%= movie.id %>?_method=DELETE" method="POST" style="display: inline;">
-          <button type="submit">Delete</button>
-        </form>
-        <a href="/movies/<%= movie.id %>/edit">Edit</a>
+    <% movies.forEach(movie => { 
+        let ratingClass = "";
+        if (movie.rating >= 1 && movie.rating <= 3) {
+          ratingClass = "rating-1-3";
+        } else if (movie.rating >= 4 && movie.rating <= 6) {
+          ratingClass = "rating-4-6";
+        } else if (movie.rating >= 7 && movie.rating <= 10) {
+          ratingClass = "rating-7-10";
+        }
+    %>
+      <li class="<%= ratingClass %>">
+        <div id="Movie">
+            <div id="Info">
+                <%= movie.title %> - <%= movie.genre %> - <%= movie.director %><div id="Rating"><%= movie.rating %>/10</div>
+            </div>
+            
+        <i class="gg-push-chevron-right" id="MenuBut" onclick="toggleOptions(this)"></i>
+
+            <div id="Options">
+                <a href="/movies/<%= movie.id %>/edit" id="Edit">Edit</a>
+
+                <form action="/movies/<%= movie.id %>?_method=DELETE" method="POST" style="display: inline;">
+                <button type="submit" id="Delete">Delete</button>
+                </form>
+            </div>
+        </div>
+
       </li>
     <% }) %>
   </ul>
-  <a href="/new">Add New Movie</a>
+  <div id="Add"><a href="/new">Add New Movie</a></div>
+
+  <script>
+    function toggleOptions(element) {
+      const liElement = element.closest('li');
+      liElement.classList.toggle('expanded');
+    }
+  </script>
 </body>
 </html>
