@@ -34,10 +34,16 @@ async function updateMovie(id, title, genre, rating, director) {
   return rows[0];
 }
 
+async function getAllMoviesSortedByRating(order = 'ASC') {
+  const results = await pool.query(`SELECT * FROM movie ORDER BY rating ${order}`);
+  return results.rows;
+}
+
 module.exports = {
   getAllMovies,
   createMovie,
   deleteMovie,
   getMovieById,
   updateMovie,
+  getAllMoviesSortedByRating
 };

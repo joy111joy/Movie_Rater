@@ -1,12 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const { getAllMovies, createMovie, deleteMovie, getMovieById, updateMovie } = require('../dal/data');
+const { getAllMovies, createMovie, deleteMovie, getMovieById, updateMovie, getAllMoviesSortedByRating} = require('../dal/data');
 
 // Route to display the list of movies
 router.get('/', async (req, res) => {
+  const sortBy = req.query.sortBy || 'none';
+  let movies;
+
   try {
-    const movies = await getAllMovies();
-    res.render('index', { movies });
+    if (sortBy === 'ratingAsc') {
+      movies = await getAllMoviesSortedByRating('ASC');
+    } else if (sortBy === 'ratingDesc') {
+      movies = await getAllMoviesSortedByRating('DESC');
+    } else {
+      movies = await getAllMovies();
+    }
+
+    res.render('index', { movies, sortBy });
   } catch (error) {
     console.error('Error fetching movies:', error);
     res.status(500).send('Internal Server Error');
@@ -70,5 +80,8 @@ router.delete('/movies/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
+
 
 module.exports = router;

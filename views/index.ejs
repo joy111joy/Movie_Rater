@@ -19,6 +19,13 @@
 </head>
 <body>
   <h1>Movie <span id="Yellow">Rater</span> <span id="Sub"> - List and Rate your Favourite Movies</span></h1>
+
+  <h2 id="SortHead">Sort By:</h2>
+  <div id="SortCont">
+    <h3><a href="/?sortBy=ratingAsc">Rating (Ascending)</a></h3>
+    <h3><a href="/?sortBy=ratingDesc">Rating (Descending)</a></h3>
+  </div>
+
   <ul>
     <% movies.forEach(movie => { 
         let ratingClass = "";
@@ -30,13 +37,13 @@
           ratingClass = "rating-7-10";
         }
     %>
-      <li class="<%= ratingClass %>">
+      <li class="<%= ratingClass %>" onclick="toggleOptions(this)">
         <div id="Movie">
             <div id="Info">
                 <%= movie.title %> - <%= movie.genre %> - <%= movie.director %><div id="Rating"><%= movie.rating %>/10</div>
             </div>
             
-        <i class="gg-push-chevron-right" id="MenuBut" onclick="toggleOptions(this)"></i>
+        <i class="gg-push-chevron-right" id="MenuBut"></i>
 
             <div id="Options">
                 <a href="/movies/<%= movie.id %>/edit" id="Edit">Edit</a>

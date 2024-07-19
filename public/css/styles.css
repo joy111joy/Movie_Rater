@@ -38,6 +38,7 @@ li {
   transition: all 0.5s ease;
   font-weight: bold;
   font-family: exo;
+  cursor: pointer;
 }
 
 li.expanded {
@@ -158,4 +159,22 @@ li.expanded #MenuBut {
 label {
   color: white;
   font-family: exo;
+}
+
+#SortHead {
+  font-family: Exo;
+  color: white;
+  font-size: 15pt;
+}
+
+#SortCont {
+  color: white;
+  width: 40%;
+  margin-top: -30px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: Exo;
+  font-size: 10pt;
 }
