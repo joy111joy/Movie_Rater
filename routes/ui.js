@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { getAllMovies, createMovie, deleteMovie, getMovieById, updateMovie, getAllMoviesSortedByRating} = require('../dal/data');
 
-// Route to display the list of movies
+// Route to display the list of movies based on given sort order
 router.get('/', async (req, res) => {
   const sortBy = req.query.sortBy || 'none';
   let movies;
 
+  // Fetch movies based on the sort order
   try {
     if (sortBy === 'ratingAsc') {
       movies = await getAllMoviesSortedByRating('ASC');
@@ -17,13 +18,15 @@ router.get('/', async (req, res) => {
     }
 
     res.render('index', { movies, sortBy });
+
+    //error handling
   } catch (error) {
     console.error('Error fetching movies:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
-// Route to display the form
+// Route to display the new movie form
 router.get('/new', (req, res) => {
   res.render('new');
 });
@@ -35,13 +38,14 @@ router.post('/movies', async (req, res) => {
   try {
     await createMovie(title, genre, rating, director);
     res.redirect('/');
+    //error handling
   } catch (error) {
     console.error('Error creating movie:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
-// Route to display the edit form
+// Route to display the edit movie form
 router.get('/movies/:id/edit', async (req, res) => {
   const movieId = req.params.id;
   try {
@@ -50,6 +54,7 @@ router.get('/movies/:id/edit', async (req, res) => {
       return res.status(404).send('Movie not found');
     }
     res.render('edit', { movie });
+    //error handling
   } catch (err) {
     console.error('Error fetching movie:', err);
     res.status(500).send('Error fetching movie');
@@ -60,6 +65,8 @@ router.get('/movies/:id/edit', async (req, res) => {
 router.patch('/movies/:id', async (req, res) => {
   const movieId = req.params.id;
   const { title, genre, rating, director } = req.body;
+
+      //error handling
   try {
     await updateMovie(movieId, title, genre, rating, director);
     res.redirect('/');
@@ -72,6 +79,7 @@ router.patch('/movies/:id', async (req, res) => {
 // Route to handle deleting the movie
 router.delete('/movies/:id', async (req, res) => {
   const movieId = req.params.id;
+  //error handling
   try {
     await deleteMovie(movieId);
     res.redirect('/');

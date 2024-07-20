@@ -16,6 +16,7 @@ router.get('/movies', async (req, res) => {
     }
 });
 
+//get movie by id
 router.post('/movies', (req, res) => {
     const newMovie = req.body;
     data.push(newMovie);

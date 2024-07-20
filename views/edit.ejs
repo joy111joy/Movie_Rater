@@ -1,3 +1,6 @@
+<!-- This file is used to display the edit the movie form and details. It contains a form with input fields for title, genre, rating, and director. 
+ The form is submitted to the server using the PATCH method. There is also a JavaScript function to validate the rating input. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +29,7 @@
   <a href="/">Back to Movie List</a>
 
   <script>
+    // Validate rating input ensuring it is between 1 and 10
     function validateRating() {
       var ratingInput = document.getElementById('rating');
       var rating = ratingInput.value;

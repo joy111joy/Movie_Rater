@@ -178,3 +178,7 @@ label {
   font-family: Exo;
   font-size: 10pt;
 }
+
+.rating-1-3 { background-color: red; }
+.rating-4-6 { background-color: yellow; }
+.rating-7-10 { background-color: green; }
