@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../dal/data');
 
 let data = [
-    { id: 1, title: 'Avengers', Genre: 'Action', Rating: '8', Director: 'Joss Whedon' }
+    { id: 1, title: 'Avengers Infinity War', Genre: 'Action', Rating: '10', Director: 'Russo Brothers' }
 ];
 //get all movies
 router.get('/movies', async (req, res) => {
@@ -22,5 +22,6 @@ router.post('/movies', (req, res) => {
     data.push(newMovie);
     res.status(201).json(newMovie);
 });
+
 
 module.exports = router;

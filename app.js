@@ -2,6 +2,8 @@
 const express = require('express');
 const methodOverride = require('method-override');
 const path = require('path');
+const bodyParser = require('body-parser');
+
 
 //Creating an instance of express and setting the port
 const app = express();
@@ -9,6 +11,7 @@ const port = 3000;
 
 //Setting up the middleware and view engine 
 app.use(methodOverride('_method'));
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
@@ -33,3 +36,5 @@ app.use(express.json());
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`);
     });
+
+    module.exports = app;

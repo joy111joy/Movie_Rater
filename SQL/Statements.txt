@@ -1,0 +1,24 @@
+Here are the SQL create statments for the Movie_Rater Application Database
+
+CREATE TABLE movie (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100),
+  genre VARCHAR(100),
+  rating INTEGER,
+  director VARCHAR(100)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  CONSTRAINT movie_rating_check CHECK (rating >= 1 AND rating <= 10)
+);
+
+
+-- SELECT
+-- SELECT * FROM movie;
+
+-- INSERT
+INSERT INTO movie (title, genre, rating, director) VALUES ('ET', 'Sci-Fi', 6, 'Steven Speilberg');
+
+-- UPDATE
+UPDATE movie SET rating = 5 WHERE id = 5;
+
+-- -- DELETE
+-- DELETE FROM movie WHERE id = 1;
